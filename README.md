@@ -7,7 +7,7 @@ Specify your twilio credentials as environment variables as options.
 ## Usage
 
 ```
-usage: sms [-h] [--account ACCOUNT_SID] [--token AUTH_TOKEN] [--from FROM]
+usage: twilio [-h] [--account ACCOUNT_SID] [--token AUTH_TOKEN] [--from FROM]
            [--msg MSG | --path PATH]
            to [to ...]
 
