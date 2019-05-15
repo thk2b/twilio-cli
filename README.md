@@ -40,17 +40,17 @@ $ export TWILIO_ACCOUNT_SID=<your account sid>
 $ export TWILIO_AUTH_TOKEN=<your auth token>
 $ export TWILIO_FROM=<your twilio number>
 
-$ ./sms "+1 234 567 8912" -m "Hello, World"
+$ ./twilio "+1 234 567 8912" -m "Hello, World"
 sent sms <message SID> to +1 234 567 8912
 
 # write message to a file
 $ echo "Hello, World, but in a file" > message.txt
-$ ./sms "+1 234 567 8912" "+1 9876 543 2109" -p message.txt
+$ ./twilio "+1 234 567 8912" "+1 9876 543 2109" -p message.txt
 sent sms <message SID> to +1 234 567 8912
 sent sms <message SID> to +1 9876 543 2109
 
 # reads message from stdin
-$ cat message.txt |./sms "+1 234 567 8912" "+1 9876 543 2109"
+$ cat message.txt |./twilio "+1 234 567 8912" "+1 9876 543 2109"
 sent sms <message SID> to +1 234 567 8912
 sent sms <message SID> to +1 9876 543 2109
 ```
