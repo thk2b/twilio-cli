@@ -34,9 +34,12 @@ optional arguments:
   -q                    supress output
 ```
 
-## Examples
+## Quick Start
 
 ```bash
+# install the twilio package
+$ pip3 install --user twilio
+
 # export environment variables. See usage for alternatives
 $ export TWILIO_ACCOUNT_SID=<your account sid>
 $ export TWILIO_AUTH_TOKEN=<your auth token>
