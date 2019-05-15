@@ -1,4 +1,4 @@
-# sms-cli
+# twilio-cli
 Send text messages from the command line using twilio.
 
 The script reads from stdin, from a file or directly from an argument.
