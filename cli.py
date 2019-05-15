@@ -66,6 +66,21 @@ def get_args(from_module=False):
         required=False,
         help="a path to a file containing the message to be sent. defaults to stdin if -m is not specified"
     )
+    verbosity = parser.add_mutually_exclusive_group()
+    verbosity.add_argument(
+        "-v",
+        help="verbose output",
+        action="store_true",
+        default=False,
+        dest="verbose"
+    )
+    verbosity.add_argument(
+        "-q",
+        default=False,
+        help="supress output",
+        action="store_true",
+        dest="quiet"
+    )
     return parser.parse_args(sys.argv[1:])
 
 def get_body(args):
@@ -84,6 +99,9 @@ def get_body(args):
 
 def send_sms(args):
     body = get_body(args)
+    if args.verbose:
+        print("sending body:")
+        print(body)
     client = Client(args.account_sid, args.auth_token)
     for destination in args.to:
         try:
@@ -92,7 +110,10 @@ def send_sms(args):
                 from_=args.from_,
                 body=body
             )
-            print("sent sms {} to {}".format(message.sid, destination))
+            if args.verbose:
+                print("sent sms {} to {}".format(message.sid, destination))
+            elif not args.quiet:
+                print(message.sid)
         except Exception as e:
             print("error sending to {}: {}".format(destination, e))
 

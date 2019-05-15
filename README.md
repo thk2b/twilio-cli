@@ -8,8 +8,8 @@ Specify your twilio credentials as environment variables as options.
 
 ```
 usage: twilio [-h] [--account ACCOUNT_SID] [--token AUTH_TOKEN] [--from FROM]
-           [--msg MSG | --path PATH]
-           to [to ...]
+              [--msg MSG | --path PATH] [-v | -q]
+              to [to ...]
 
 send text messages from the command line
 
@@ -30,6 +30,8 @@ optional arguments:
                         specified
   --path PATH, -p PATH  a path to a file containing the message to be sent.
                         defaults to stdin if -m is not specified
+  -v                    verbose output
+  -q                    supress output
 ```
 
 ## Examples
@@ -40,17 +42,22 @@ $ export TWILIO_ACCOUNT_SID=<your account sid>
 $ export TWILIO_AUTH_TOKEN=<your auth token>
 $ export TWILIO_FROM=<your twilio number>
 
-$ ./twilio "+1 234 567 8912" -m "Hello, World"
+$ ./twilio -v "+1 234 567 8912" -m "Hello, World"
+sending body:
+Hello, World
 sent sms <message SID> to +1 234 567 8912
 
 # write message to a file
 $ echo "Hello, World, but in a file" > message.txt
-$ ./twilio "+1 234 567 8912" "+1 9876 543 2109" -p message.txt
+$ ./twilio -v "+1 234 567 8912" "+1 9876 543 2109" -p message.txt
+sending body:
+Hello, World, but in a file
 sent sms <message SID> to +1 234 567 8912
 sent sms <message SID> to +1 9876 543 2109
 
-# reads message from stdin
-$ cat message.txt |./twilio "+1 234 567 8912" "+1 9876 543 2109"
-sent sms <message SID> to +1 234 567 8912
-sent sms <message SID> to +1 9876 543 2109
+# reads message from stdin in combination with quiet mode
+$ cat message.txt |./twilio -q "+1 234 567 8912" "+1 9876 543 2109"
+<message0 SID>
+<message1 SID>
+
 ```
