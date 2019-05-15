@@ -1,5 +1,8 @@
 # sms-cli
-Send text messages from the command line
+Send text messages from the command line using twilio.
+
+The script reads from stdin, from a file or directly from an argument.
+Specify your twilio credentials as environment variables as options.
 
 ## Usage
 
@@ -40,12 +43,14 @@ $ export TWILIO_FROM=<your twilio number>
 $ ./sms "+1 234 567 8912" -m "Hello, World"
 sent sms <message SID> to +1 234 567 8912
 
-$ echo "Hello, World, but in a file" > message.txt # write message to a file
+# write message to a file
+$ echo "Hello, World, but in a file" > message.txt
 $ ./sms "+1 234 567 8912" "+1 9876 543 2109" -p message.txt
 sent sms <message SID> to +1 234 567 8912
 sent sms <message SID> to +1 9876 543 2109
 
-$ cat message.txt |./sms "+1 234 567 8912" "+1 9876 543 2109" # reads message from stdin
+# reads message from stdin
+$ cat message.txt |./sms "+1 234 567 8912" "+1 9876 543 2109"
 sent sms <message SID> to +1 234 567 8912
 sent sms <message SID> to +1 9876 543 2109
 ```
